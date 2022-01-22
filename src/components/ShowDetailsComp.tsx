@@ -84,7 +84,8 @@ const InnerContainer = styled.div`
 `;
 
 const Image = styled.img`
-  max-width: 700px;
+  max-width: 100%;
+  min-width: 320px;
   border-radius: 5px;
 `;
 

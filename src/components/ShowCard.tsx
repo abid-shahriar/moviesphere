@@ -39,16 +39,32 @@ const ShowCard = styled.div`
   justify-content: center;
   padding: 2rem;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    max-width: 200px;
+  }
+  @media (max-width: 500px) {
+    max-width: 170px;
+  }
 `;
 
 const Image = styled.img`
   max-width: 200px;
   border-radius: 5px;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 const StyledTypo = styled(Typography)`
   max-width: 200px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    max-width: 200px;
+  }
+  @media (max-width: 500px) {
+    max-width: 170px;
+  }
 `;
