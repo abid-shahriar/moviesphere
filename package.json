@@ -1,6 +1,5 @@
 {
-  "name": "moviesphere2.1",
-  "version": "0.1.0",
+  "name": "moviesphere",
   "private": true,
   "scripts": {
     "dev": "next dev",
