@@ -22,11 +22,11 @@ const Home: NextPage = (props: any) => {
   useEffect(() => {
     setTimeout(() => {
       loaderContainerRef?.current?.classList.add('fade-out');
-    }, 3500);
+    }, 1500);
 
     setTimeout(() => {
       setLoading(false);
-    }, 4000);
+    }, 2000);
   }, []);
 
   return (
