@@ -32,11 +32,11 @@ const ShowCardComp = ({ show, setModalState, setShowId, tv, setIsTv }: any) => {
             }}
           />
         </ImageWrapper>
-        <StyledTypo padding='1rem 0 0 0' fontSize='1.8rem' fontWeight='500'>
+        <StyledTypo padding="1rem 0 0 0" fontSize="1.8rem" fontWeight="500">
           {show.title || show.name}
         </StyledTypo>
 
-        <Typography fontSize='1.5rem'>{dayjs(show.release_date).format('MMM YYYY')}</Typography>
+        <Typography fontSize="1.5rem">{dayjs(show.release_date).format('MMM YYYY')}</Typography>
       </ShowCard>
     </>
   );
