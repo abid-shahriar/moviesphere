@@ -40,6 +40,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   animation: modalAnimation 150ms linear;
+  padding: 50px 10px;
 
   @keyframes modalAnimation {
     0% {
