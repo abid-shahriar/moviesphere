@@ -14,7 +14,7 @@ const ShowCardComp = ({ show, setModalState, setShowId, tv, setIsTv }: any) => {
   };
 
   useEffect(() => {
-    is_cached(`https://image.tmdb.org/t/p/original/${show.poster_path}`) && setImageLoading(false);
+    is_cached(`https://image.tmdb.org/t/p/w200/${show.poster_path}`) && setImageLoading(false);
   }, [show.poster_path]);
 
   return (
@@ -22,7 +22,7 @@ const ShowCardComp = ({ show, setModalState, setShowId, tv, setIsTv }: any) => {
       <ShowCard>
         <ImageWrapper imageLoading={imageLoading}>
           <Image
-            src={`https://image.tmdb.org/t/p/original/${show.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w200/${show.poster_path}`}
             alt={show.title}
             onLoad={(e) => setImageLoading(false)}
             onClick={() => {
