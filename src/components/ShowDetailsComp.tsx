@@ -16,8 +16,6 @@ const ShowDetailsComp = ({ id, setModalState, isTv }: Props) => {
 
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  console.log(showData);
-
   useEffect(() => {
     const fetchApi = isTv ? tvShowDetailsApi : showDetailsApi;
 

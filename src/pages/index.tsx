@@ -19,8 +19,6 @@ const Home: NextPage = (props: any) => {
   const [showId, setShowId] = useState(1);
   const [isTv, setIsTv] = useState(false);
 
-  console.log(popularTvShows);
-
   useEffect(() => {
     setTimeout(() => {
       loaderContainerRef?.current?.classList.add('fade-out');
