@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { showDetailsApi, tvShowDetailsApi } from '../apis';
+
+import { movieVideosApi, showDetailsApi, tvShowDetailsApi, tvVideosApi } from '../apis';
 import Loader from './Loader';
 import Typography from './Typography';
 
@@ -13,28 +14,51 @@ interface Props {
 
 const ShowDetailsComp = ({ id, setModalState, isTv }: Props) => {
   const [showData, setShowData] = useState<any>({});
+  const [videoData, setVideoData] = useState<any>({});
 
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchApi = isTv ? tvShowDetailsApi : showDetailsApi;
+    const fetchShowDetailsApi = isTv ? tvShowDetailsApi : showDetailsApi;
+    const fetchShowVideosApi = isTv ? tvVideosApi : movieVideosApi;
 
-    fetchApi(id).then((res: any) => {
+    fetchShowDetailsApi(id).then((res: any) => {
       setShowData(res.data);
 
-      setTimeout(() => {
-        overlayRef.current?.classList.add('hide');
-      }, 1500);
+      fetchShowVideosApi(id).then((res: any) => {
+        const youtubeVideos = res.data.results.filter((video: any) => video.site === 'YouTube');
+        setVideoData(youtubeVideos[youtubeVideos.length - 1]);
+
+        setTimeout(() => {
+          overlayRef.current?.classList.add('hide');
+        }, 1500);
+      });
     });
   }, [id, isTv]);
+
+  console.log(videoData);
 
   return (
     <Wrapper>
       <Container>
         <InnerContainer>
-          {showData?.backdrop_path && <Image src={`https://image.tmdb.org/t/p/original/${showData?.backdrop_path}`} alt={showData.title} />}
+          {showData?.backdrop_path && !videoData && (
+            <Image src={`https://image.tmdb.org/t/p/original/${showData?.backdrop_path}`} alt={showData.title} />
+          )}
 
-          <Typography fontSize='2.4rem' fontWeight='500'>
+          {videoData && (
+            <VideoContainer>
+              <iframe
+                src={`https://www.youtube.com/embed/${videoData.key}`}
+                title='YouTube video player'
+                frameBorder='0'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allowFullScreen
+              ></iframe>
+            </VideoContainer>
+          )}
+
+          <Typography fontSize='2.4rem' fontWeight='500' margin='2rem 0 0 0'>
             {showData?.title || showData?.name}
           </Typography>
 
@@ -148,4 +172,21 @@ const Overlay = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
+`;
+
+const VideoContainer = styled.div`
+  width: 100%;
+  max-width: 100%;
+
+  & > * {
+    width: 100%;
+    max-width: 100%;
+    min-height: 400px;
+    border-radius: 10px;
+
+    & > * {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
 `;
