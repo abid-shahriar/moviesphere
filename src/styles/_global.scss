@@ -1,0 +1,45 @@
+* {
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: grey;
+    border-radius: 50px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--clr-primary);
+    border-radius: 50px;
+  }
+}
+
+#__next {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2.5%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+label {
+  display: inline-block;
+}
+
+input {
+  display: inline-block;
+}
+
+a {
+  display: inline-block;
+  color: var(--clr-black);
+  text-decoration: none;
+
+  & > * {
+    pointer-events: none;
+  }
+}
