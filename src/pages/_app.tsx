@@ -1,8 +1,9 @@
 import type { AppProps } from 'next/app';
 
 import '../styles/main.scss';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import '../styles/slick.scss';
+import '../styles/slick_theme.scss';
+
 import Navbar from '../components/Nav';
 import styled from 'styled-components';
 import FooterComp from '../components/Footer';
