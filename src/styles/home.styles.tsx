@@ -6,8 +6,8 @@ export const MainContainer = styled.main`
 `;
 
 export const MoviesSliderContainer = styled.div`
-  & > * {
-    margin-top: 4rem;
+  & > *:not(:first-child) {
+    margin-top: 8rem;
   }
 `;
 

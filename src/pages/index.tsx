@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { useEffect, useRef, useState } from 'react';
 
-import { nowPlayingApi, popularMoviesApi, popularTvShowsApi, topRatedApi, upcomingApi } from '../apis';
+import { nowPlayingApi, popularMoviesApi, popularTvShowsApi, topRatedApi, topRatedTvShowsApi, upcomingApi } from '../apis';
 
 import Loader from '../components/Loader';
 import ModalComp from '../components/ModalComp';
@@ -11,7 +11,7 @@ import MoviesSliderComp from '../components/home/MoviesSliderComp';
 import { LoaderContainer, MainContainer, MoviesSliderContainer } from '../styles/home.styles';
 
 const Home: NextPage = (props: any) => {
-  const { popularMovies, nowPlaying, topRatedMovies, upcomingMovies, popularTvShows } = props;
+  const { popularMovies, nowPlaying, topRatedMovies, upcomingMovies, popularTvShows, topRatedTvShows } = props;
 
   const [loading, setLoading] = useState(true);
   const loaderContainerRef = useRef<HTMLDivElement>(null);
@@ -42,7 +42,7 @@ const Home: NextPage = (props: any) => {
           shows={nowPlaying.results}
           setModalState={setModalState}
           setShowId={setShowId}
-          title='now plying in theaters'
+          title="now plying in theaters"
           delay={0}
           setIsTv={setIsTv}
         />
@@ -51,7 +51,7 @@ const Home: NextPage = (props: any) => {
           shows={popularMovies.results}
           setModalState={setModalState}
           setShowId={setShowId}
-          title='popular movies'
+          title="popular movies"
           delay={1000}
           setIsTv={setIsTv}
         />
@@ -60,7 +60,7 @@ const Home: NextPage = (props: any) => {
           shows={topRatedMovies.results}
           setModalState={setModalState}
           setShowId={setShowId}
-          title='top rated moves'
+          title="top rated moves"
           delay={2000}
           setIsTv={setIsTv}
         />
@@ -69,7 +69,7 @@ const Home: NextPage = (props: any) => {
           shows={upcomingMovies.results}
           setModalState={setModalState}
           setShowId={setShowId}
-          title='upcoming movies'
+          title="upcoming movies"
           delay={3000}
           setIsTv={setIsTv}
         />
@@ -78,8 +78,18 @@ const Home: NextPage = (props: any) => {
           shows={popularTvShows.results}
           setModalState={setModalState}
           setShowId={setShowId}
-          title='popular TV shows'
+          title="popular TV shows"
           delay={1000}
+          tv={true}
+          setIsTv={setIsTv}
+        />
+
+        <MoviesSliderComp
+          shows={topRatedTvShows.results}
+          setModalState={setModalState}
+          setShowId={setShowId}
+          title="top rated TV shows"
+          delay={2000}
           tv={true}
           setIsTv={setIsTv}
         />
@@ -102,16 +112,18 @@ export async function getStaticProps() {
   const topRatedMovies: any = await topRatedApi();
   const upcomingMovies: any = await upcomingApi();
   const popularTvShows: any = await popularTvShowsApi();
+  const topRatedTvShows: any = await topRatedTvShowsApi();
 
   return {
     props: {
-      fallback: 'blocking', // 'blocking' | 'initial' | 'ready' | 'suspense'
+      fallback: 'suspense',
       nowPlaying: nowPlayingMovies.data,
       popularMovies: popularMovies.data,
       topRatedMovies: topRatedMovies.data,
       upcomingMovies: upcomingMovies.data,
-      popularTvShows: popularTvShows.data
+      popularTvShows: popularTvShows.data,
+      topRatedTvShows: topRatedTvShows.data,
     },
-    revalidate: 60
+    revalidate: 60,
   };
 }

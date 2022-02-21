@@ -13,4 +13,5 @@ export const movieVideosApi = (id: number) => axios.get(`/movie/${id}/videos?api
 
 export const tvShowDetailsApi = (id: number) => axios.get(`/tv/${id}?api_key=${config.MDBApiKey}`);
 export const popularTvShowsApi = () => axios.get(`tv/popular?api_key=${config.MDBApiKey}`);
+export const topRatedTvShowsApi = () => axios.get(`tv/top_rated?api_key=${config.MDBApiKey}`);
 export const tvVideosApi = (id: number) => axios.get(`/tv/${id}/videos?api_key=${config.MDBApiKey}`);

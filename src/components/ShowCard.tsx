@@ -20,23 +20,19 @@ const ShowCardComp = ({ show, setModalState, setShowId, tv, setIsTv }: any) => {
   return (
     <>
       <ShowCard>
-        <ImageWrapper imageLoading={imageLoading}>
-          <Image
-            src={`https://image.tmdb.org/t/p/w200/${show.poster_path}`}
-            alt={show.title}
-            onLoad={(e) => setImageLoading(false)}
-            onClick={() => {
-              tv ? setIsTv(true) : setIsTv(false);
-              setModalState(true);
-              setShowId(show.id);
-            }}
-          />
+        <ImageWrapper
+          imageLoading={imageLoading}
+          onClick={() => {
+            tv ? setIsTv(true) : setIsTv(false);
+            setModalState(true);
+            setShowId(show.id);
+          }}
+        >
+          <Image src={`https://image.tmdb.org/t/p/w200/${show.poster_path}`} alt={show.title} onLoad={(e) => setImageLoading(false)} />
+          <StyledTypo padding="1rem 0 0 0" fontSize="1.8rem" fontWeight="500">
+            {show.title || show.name}
+          </StyledTypo>
         </ImageWrapper>
-        <StyledTypo padding="1rem 0 0 0" fontSize="1.8rem" fontWeight="500">
-          {show.title || show.name}
-        </StyledTypo>
-
-        <Typography fontSize="1.5rem">{dayjs(show.release_date).format('MMM YYYY')}</Typography>
       </ShowCard>
     </>
   );
@@ -76,6 +72,22 @@ const ImageWrapper = styled.div<{ imageLoading: boolean }>`
   position: relative;
   border-radius: 5px;
   overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  & > * {
+    pointer-events: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+    transition: 300s;
+  }
 
   ${({ imageLoading }) =>
     imageLoading &&
@@ -94,16 +106,10 @@ const ImageWrapper = styled.div<{ imageLoading: boolean }>`
 `;
 
 const StyledTypo = styled(Typography)`
-  max-width: 200px;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  @media (max-width: 768px) {
-    max-width: 200px;
-  }
-  @media (max-width: 500px) {
-    max-width: 170px;
-  }
+  text-align: left;
+  position: absolute;
+  bottom: 2rem;
+  padding: 0 1rem;
+  color: var(--clr-white);
+  pointer-events: none;
 `;

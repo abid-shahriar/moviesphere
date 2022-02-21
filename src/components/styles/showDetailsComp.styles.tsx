@@ -97,3 +97,26 @@ export const NoDataFoundMessage = styled.h3`
   padding: 6rem;
   background-color: var(--clr-white);
 `;
+
+export const VideoButtonsContainer = styled.div`
+  display: flex;
+  margin-top: 2rem;
+
+  & > * {
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+
+    background-color: var(--clr-primary);
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: var(--clr-white);
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: 300ms;
+
+    &:hover {
+      background-color: var(--clr-primary-deep);
+    }
+  }
+`;

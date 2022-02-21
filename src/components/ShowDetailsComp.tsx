@@ -13,6 +13,7 @@ import {
   VideoContainer,
   Wrapper,
   NoDataFoundMessage,
+  VideoButtonsContainer,
 } from './styles/showDetailsComp.styles';
 
 interface Props {
@@ -25,6 +26,7 @@ const ShowDetailsComp = ({ id, setModalState, isTv }: Props) => {
   const [showData, setShowData] = useState<any>({});
   const [videoData, setVideoData] = useState<any>({});
   const [dataNotFound, setDataNotFound] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<any>();
 
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -38,7 +40,8 @@ const ShowDetailsComp = ({ id, setModalState, isTv }: Props) => {
 
         fetchShowVideosApi(id).then((res: any) => {
           const youtubeVideos = res.data.results.filter((video: any) => video.site === 'YouTube');
-          setVideoData(youtubeVideos[youtubeVideos.length - 1]);
+          setVideoData(youtubeVideos);
+          setSelectedVideo(youtubeVideos[0]);
 
           setTimeout(() => {
             overlayRef.current?.classList.add('hide');
@@ -60,20 +63,45 @@ const ShowDetailsComp = ({ id, setModalState, isTv }: Props) => {
         <InnerContainer>
           {!dataNotFound ? (
             <>
-              {showData?.backdrop_path && !videoData.key && (
+              {showData?.backdrop_path && !selectedVideo?.key && (
                 <Image src={`https://image.tmdb.org/t/p/original/${showData?.backdrop_path}`} alt={showData.title} />
               )}
 
-              {videoData && videoData.key && (
+              {selectedVideo && selectedVideo.key && (
                 <VideoContainer>
                   <iframe
-                    src={`https://www.youtube.com/embed/${videoData.key}`}
+                    src={`https://www.youtube.com/embed/${selectedVideo.key}`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
                 </VideoContainer>
+              )}
+
+              {selectedVideo && selectedVideo.key && (
+                <VideoButtonsContainer>
+                  {videoData.length >= 3 && (
+                    <>
+                      <Typography onClick={() => setSelectedVideo(videoData[0])}>video-1</Typography>
+                      <Typography onClick={() => setSelectedVideo(videoData[videoData.length - 1])}>video-2</Typography>
+                      <Typography onClick={() => setSelectedVideo(videoData[Math.ceil((videoData.length - 1) / 2)])}>video-3</Typography>
+                    </>
+                  )}
+
+                  {videoData.length === 2 && (
+                    <>
+                      <Typography onClick={() => setSelectedVideo(videoData[0])}>video-1</Typography>
+                      <Typography onClick={() => setSelectedVideo(videoData[1])}>video-2</Typography>
+                    </>
+                  )}
+
+                  {videoData.length === 1 && (
+                    <>
+                      <Typography onClick={() => setSelectedVideo(videoData[0])}>video-1</Typography>
+                    </>
+                  )}
+                </VideoButtonsContainer>
               )}
 
               <Typography fontSize="2.4rem" fontWeight="500" margin="2rem 0 0 0">
