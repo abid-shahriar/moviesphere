@@ -14,7 +14,7 @@ import MoviesSliderContainerComp from '../components/home/MoviesSliderContainerC
 const Home: NextPage = (props: any) => {
   const { popularMovies, nowPlaying, topRatedMovies, upcomingMovies, popularTvShows, topRatedTvShows } = props;
 
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const loaderContainerRef = useRef<HTMLDivElement>(null);
   const [modalState, setModalState] = useState(false);
   const [showId, setShowId] = useState(1);
@@ -23,23 +23,23 @@ const Home: NextPage = (props: any) => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // setTimeout(() => {
-    //   loaderContainerRef?.current?.classList.add('fade-out');
-    // }, 100);
+    setTimeout(() => {
+      loaderContainerRef?.current?.classList.add('fade-out');
+    }, 500);
 
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 600);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
 
   return (
     <>
       <MainContainer>
-        {/* {loading && (
+        {loading && (
           <LoaderContainer ref={loaderContainerRef}>
             <Loader />
           </LoaderContainer>
-        )} */}
+        )}
 
         <MoviesSliderContainerComp
           nowPlaying={nowPlaying}
