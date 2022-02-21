@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -28,7 +27,12 @@ const ShowCardComp = ({ show, setModalState, setShowId, tv, setIsTv }: any) => {
             setShowId(show.id);
           }}
         >
-          <Image src={`https://image.tmdb.org/t/p/w200/${show.poster_path}`} alt={show.title || show.name} onLoad={(e) => setImageLoading(false)} />
+          <Image
+            src={`https://image.tmdb.org/t/p/w200/${show.poster_path}`}
+            alt={show.title || show.name}
+            onLoad={(e) => setImageLoading(false)}
+            loading="lazy"
+          />
           <StyledTypo padding="1rem 0 0 0" fontSize="1.8rem" fontWeight="500">
             {show.title || show.name}
           </StyledTypo>
