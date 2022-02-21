@@ -9,6 +9,7 @@ import ShowDetailsComp from '../components/ShowDetailsComp';
 import MoviesSliderComp from '../components/home/MoviesSliderComp';
 
 import { LoaderContainer, MainContainer, MoviesSliderContainer } from '../styles/home.styles';
+import Head from 'next/head';
 
 const Home: NextPage = (props: any) => {
   const { popularMovies, nowPlaying, topRatedMovies, upcomingMovies, popularTvShows, topRatedTvShows } = props;
@@ -30,77 +31,86 @@ const Home: NextPage = (props: any) => {
   }, []);
 
   return (
-    <MainContainer>
-      {loading && (
-        <LoaderContainer ref={loaderContainerRef}>
-          <Loader />
-        </LoaderContainer>
-      )}
+    <>
+      <MainContainer>
+        {loading && (
+          <LoaderContainer ref={loaderContainerRef}>
+            <Loader />
+          </LoaderContainer>
+        )}
 
-      <MoviesSliderContainer>
-        <MoviesSliderComp
-          shows={nowPlaying.results}
-          setModalState={setModalState}
-          setShowId={setShowId}
-          title="now plying in theaters"
-          delay={0}
-          setIsTv={setIsTv}
-        />
+        <MoviesSliderContainer>
+          <MoviesSliderComp
+            shows={nowPlaying.results}
+            setModalState={setModalState}
+            setShowId={setShowId}
+            title="now plying in theaters"
+            delay={0}
+            setIsTv={setIsTv}
+          />
 
-        <MoviesSliderComp
-          shows={popularMovies.results}
-          setModalState={setModalState}
-          setShowId={setShowId}
-          title="popular movies"
-          delay={1000}
-          setIsTv={setIsTv}
-        />
+          <MoviesSliderComp
+            shows={popularMovies.results}
+            setModalState={setModalState}
+            setShowId={setShowId}
+            title="popular movies"
+            delay={1000}
+            setIsTv={setIsTv}
+          />
 
-        <MoviesSliderComp
-          shows={topRatedMovies.results}
-          setModalState={setModalState}
-          setShowId={setShowId}
-          title="top rated moves"
-          delay={2000}
-          setIsTv={setIsTv}
-        />
+          <MoviesSliderComp
+            shows={topRatedMovies.results}
+            setModalState={setModalState}
+            setShowId={setShowId}
+            title="top rated moves"
+            delay={2000}
+            setIsTv={setIsTv}
+          />
 
-        <MoviesSliderComp
-          shows={upcomingMovies.results}
-          setModalState={setModalState}
-          setShowId={setShowId}
-          title="upcoming movies"
-          delay={3000}
-          setIsTv={setIsTv}
-        />
+          <MoviesSliderComp
+            shows={upcomingMovies.results}
+            setModalState={setModalState}
+            setShowId={setShowId}
+            title="upcoming movies"
+            delay={3000}
+            setIsTv={setIsTv}
+          />
 
-        <MoviesSliderComp
-          shows={popularTvShows.results}
-          setModalState={setModalState}
-          setShowId={setShowId}
-          title="popular TV shows"
-          delay={1000}
-          tv={true}
-          setIsTv={setIsTv}
-        />
+          <MoviesSliderComp
+            shows={popularTvShows.results}
+            setModalState={setModalState}
+            setShowId={setShowId}
+            title="popular TV shows"
+            delay={1000}
+            tv={true}
+            setIsTv={setIsTv}
+          />
 
-        <MoviesSliderComp
-          shows={topRatedTvShows.results}
-          setModalState={setModalState}
-          setShowId={setShowId}
-          title="top rated TV shows"
-          delay={2000}
-          tv={true}
-          setIsTv={setIsTv}
-        />
-      </MoviesSliderContainer>
+          <MoviesSliderComp
+            shows={topRatedTvShows.results}
+            setModalState={setModalState}
+            setShowId={setShowId}
+            title="top rated TV shows"
+            delay={2000}
+            tv={true}
+            setIsTv={setIsTv}
+          />
+        </MoviesSliderContainer>
 
-      {modalState && (
-        <ModalComp setModalState={setModalState}>
-          <ShowDetailsComp id={showId} setModalState={setModalState} isTv={isTv} />
-        </ModalComp>
-      )}
-    </MainContainer>
+        {modalState && (
+          <ModalComp setModalState={setModalState}>
+            <ShowDetailsComp id={showId} setModalState={setModalState} isTv={isTv} />
+          </ModalComp>
+        )}
+      </MainContainer>
+
+      <Head>
+        <title>Moviesphere</title>
+
+        <meta name="description" content="Moviesphere is a movie discovery web app that allows you to discover movies and TV shows" />
+        <meta name="og:description" content="Moviesphere is a movie discovery web app that allows you to discover movies and TV shows" />
+      </Head>
+    </>
   );
 };
 

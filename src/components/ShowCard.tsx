@@ -28,7 +28,7 @@ const ShowCardComp = ({ show, setModalState, setShowId, tv, setIsTv }: any) => {
             setShowId(show.id);
           }}
         >
-          <Image src={`https://image.tmdb.org/t/p/w200/${show.poster_path}`} alt={show.title} onLoad={(e) => setImageLoading(false)} />
+          <Image src={`https://image.tmdb.org/t/p/w200/${show.poster_path}`} alt={show.title || show.name} onLoad={(e) => setImageLoading(false)} />
           <StyledTypo padding="1rem 0 0 0" fontSize="1.8rem" fontWeight="500">
             {show.title || show.name}
           </StyledTypo>
@@ -60,7 +60,6 @@ const ShowCard = styled.div`
 const Image = styled.img`
   max-width: 200px;
   border-radius: 5px;
-  height: 300px;
 
   @media (max-width: 768px) {
     max-width: 100%;

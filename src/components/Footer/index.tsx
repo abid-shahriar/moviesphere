@@ -9,7 +9,7 @@ const FooterComp = () => {
       </Typography>
 
       <Typography textAlign="center" fontSize="1.5rem">
-        <a href="https://abidshahriar.me" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--clr-primary)' }}>
+        <a href="https://abidshahriar.me" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--clr-primary-deep)' }}>
           Abid Shahriar
         </a>
       </Typography>
