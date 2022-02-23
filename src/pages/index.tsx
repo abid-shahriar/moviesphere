@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import type { NextPage } from 'next';
 import { useEffect, useRef, useState } from 'react';
 
@@ -6,30 +7,30 @@ import { nowPlayingApi, popularMoviesApi, popularTvShowsApi, topRatedApi, topRat
 import Loader from '../components/Loader';
 import ModalComp from '../components/ModalComp';
 import ShowDetailsComp from '../components/ShowDetailsComp';
+import MoviesSliderContainerComp from '../components/home/MoviesSliderContainerComp';
 
 import { LoaderContainer, MainContainer } from '../styles/home.styles';
-import Head from 'next/head';
-import MoviesSliderContainerComp from '../components/home/MoviesSliderContainerComp';
 
 const Home: NextPage = (props: any) => {
   const { popularMovies, nowPlaying, topRatedMovies, upcomingMovies, popularTvShows, topRatedTvShows } = props;
 
-  const [loading, setLoading] = useState(true);
   const loaderContainerRef = useRef<HTMLDivElement>(null);
+
   const [modalState, setModalState] = useState(false);
-  const [showId, setShowId] = useState(1);
+  const [loading, setLoading] = useState(true);
   const [isTv, setIsTv] = useState(false);
+  const [showId, setShowId] = useState(1);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     setTimeout(() => {
       loaderContainerRef?.current?.classList.add('fade-out');
-    }, 500);
+    }, 2000);
 
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 2500);
   }, []);
 
   return (

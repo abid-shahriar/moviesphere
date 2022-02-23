@@ -1,5 +1,5 @@
-import { MoviesSliderContainer } from '../../styles/home.styles';
 import MoviesSliderComp from './MoviesSliderComp';
+import { MoviesSliderContainer } from '../../styles/home.styles';
 
 interface Props {
   nowPlaying: any;
@@ -19,57 +19,57 @@ const MoviesSliderContainerComp = (props: Props) => {
   return (
     <MoviesSliderContainer>
       <MoviesSliderComp
-        shows={nowPlaying.results}
+        shows={nowPlaying.results.slice(0, 15)}
         setModalState={setModalState}
         setShowId={setShowId}
         title="now plying in theaters"
-        delay={0}
+        delay={1500}
         setIsTv={setIsTv}
       />
 
       <MoviesSliderComp
-        shows={popularMovies.results}
+        shows={popularMovies.results.slice(0, 15)}
         setModalState={setModalState}
         setShowId={setShowId}
         title="popular movies"
-        delay={1000}
-        setIsTv={setIsTv}
-      />
-
-      <MoviesSliderComp
-        shows={topRatedMovies.results}
-        setModalState={setModalState}
-        setShowId={setShowId}
-        title="top rated moves"
         delay={2000}
         setIsTv={setIsTv}
       />
 
       <MoviesSliderComp
-        shows={upcomingMovies.results}
+        shows={topRatedMovies.results.slice(0, 15)}
         setModalState={setModalState}
         setShowId={setShowId}
-        title="upcoming movies"
-        delay={3000}
+        title="top rated moves"
+        delay={1700}
         setIsTv={setIsTv}
       />
 
       <MoviesSliderComp
-        shows={popularTvShows.results}
+        shows={upcomingMovies.results.slice(0, 15)}
+        setModalState={setModalState}
+        setShowId={setShowId}
+        title="upcoming movies"
+        delay={1500}
+        setIsTv={setIsTv}
+      />
+
+      <MoviesSliderComp
+        shows={popularTvShows.results.slice(0, 15)}
         setModalState={setModalState}
         setShowId={setShowId}
         title="popular TV shows"
-        delay={1000}
+        delay={2000}
         tv={true}
         setIsTv={setIsTv}
       />
 
       <MoviesSliderComp
-        shows={topRatedTvShows.results}
+        shows={topRatedTvShows.results.slice(0, 15)}
         setModalState={setModalState}
         setShowId={setShowId}
         title="top rated TV shows"
-        delay={2000}
+        delay={1700}
         tv={true}
         setIsTv={setIsTv}
       />

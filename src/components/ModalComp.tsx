@@ -1,5 +1,5 @@
-import { ReactNode, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { ReactNode, useEffect, useRef } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -18,7 +18,7 @@ const ModalComp = ({ children, setModalState }: Props) => {
   }, [setModalState]);
 
   return (
-    <Container className='modal' ref={modalRef}>
+    <Container className="modal" ref={modalRef}>
       {children}
     </Container>
   );

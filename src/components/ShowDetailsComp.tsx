@@ -2,8 +2,9 @@ import dayjs from 'dayjs';
 import { useEffect, useRef, useState } from 'react';
 
 import { movieVideosApi, showDetailsApi, tvShowDetailsApi, tvVideosApi } from '../apis';
-import Typography from './Typography';
+
 import Loader from './Loader';
+import Typography from './Typography';
 import {
   CloseModalBtn,
   Container,
@@ -25,7 +26,7 @@ interface Props {
 const ShowDetailsComp = ({ id, setModalState, isTv }: Props) => {
   const [showData, setShowData] = useState<any>({});
   const [videoData, setVideoData] = useState<any>({});
-  const [dataNotFound, setDataNotFound] = useState(false);
+  const [dataNotFound, setDataNotFound] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState<any>();
 
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -42,6 +43,8 @@ const ShowDetailsComp = ({ id, setModalState, isTv }: Props) => {
           const youtubeVideos = res.data.results.filter((video: any) => video.site === 'YouTube');
           setVideoData(youtubeVideos);
           setSelectedVideo(youtubeVideos[0]);
+
+          setDataNotFound(false);
 
           setTimeout(() => {
             overlayRef.current?.classList.add('hide');

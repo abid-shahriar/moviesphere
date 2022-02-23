@@ -86,6 +86,11 @@ export const VideoContainer = styled.div`
     min-height: 400px;
     border-radius: 10px;
 
+    @media (max-width: 500px) {
+      min-height: 200px;
+      max-height: 200px;
+    }
+
     & > * {
       width: 100%;
       max-width: 100%;
@@ -94,8 +99,10 @@ export const VideoContainer = styled.div`
 `;
 
 export const NoDataFoundMessage = styled.h3`
-  padding: 6rem;
+  padding: 4rem;
   background-color: var(--clr-white);
+  min-height: 200px;
+  min-width: 320px;
 `;
 
 export const VideoButtonsContainer = styled.div`

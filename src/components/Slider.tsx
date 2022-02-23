@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
 import Slider from 'react-slick';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -11,35 +11,36 @@ const CustomSlider = ({ children, delay }: Props) => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: delay,
     slidesToShow: 5,
     slidesToScroll: 5,
     autoplay: true,
     autoplaySpeed: 4000,
-    delay: delay || 0,
     responsive: [
       {
         breakpoint: 1100,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4
-        }
+          slidesToScroll: 4,
+        },
       },
       {
         breakpoint: 875,
         settings: {
+          speed: 1000,
           slidesToShow: 3,
-          slidesToScroll: 3
-        }
+          slidesToScroll: 3,
+        },
       },
       {
         breakpoint: 450,
         settings: {
+          speed: 1000,
           slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      }
-    ]
+          slidesToScroll: 2,
+        },
+      },
+    ],
   };
 
   return <StyledSlider {...settings}>{children}</StyledSlider>;
@@ -54,6 +55,7 @@ const StyledSlider = styled(Slider)`
 
     @media (max-width: 550px) {
       text-align: center;
+      display: none !important;
     }
 
     li {
