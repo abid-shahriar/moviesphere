@@ -21,6 +21,7 @@ const FooterComp = () => {
 export default FooterComp;
 
 const Footer = styled.footer`
-  padding: 1rem;
-  background-color: #d4d3d3;
+  margin-top: 4rem;
+  padding: 1.5rem;
+  background-color: #e7e7e7;
 `;

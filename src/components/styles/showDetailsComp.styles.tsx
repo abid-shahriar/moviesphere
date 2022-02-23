@@ -69,6 +69,8 @@ export const Overlay = styled.div`
   &.hide {
     opacity: 0;
     pointer-events: none;
+    height: 0;
+    width: 0;
   }
 `;
 
