@@ -19,12 +19,13 @@ export const LoaderContainer = styled.div`
   bottom: 0;
   z-index: 100;
   background-color: rgba(255, 255, 255);
+  pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
 
   &.fade-out {
-    animation: fadeOut 500ms ease-in-out;
+    animation: fadeOut 500ms ease-in-out forwards;
   }
 
   @keyframes fadeOut {
@@ -38,7 +39,7 @@ export const LoaderContainer = styled.div`
 
     100% {
       opacity: 0;
-      display: none;
+      /* display: none; */
     }
   }
 `;
