@@ -38,6 +38,7 @@ export const LoaderContainer = styled.div`
 
     100% {
       opacity: 0;
+      display: none;
     }
   }
 `;

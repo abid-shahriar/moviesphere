@@ -20,23 +20,33 @@ const Home: NextPage = (props: any) => {
   const [loading, setLoading] = useState(true);
   const [isTv, setIsTv] = useState(false);
   const [showId, setShowId] = useState(1);
+  const [hideLoader, setHideLoader] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     setTimeout(() => {
+      setLoading(false);
       loaderContainerRef?.current?.classList.add('fade-out');
     }, 2000);
 
     setTimeout(() => {
-      setLoading(false);
+      setHideLoader(true);
     }, 2500);
   }, []);
+
+  if (loading) {
+    return (
+      <LoaderContainer ref={loaderContainerRef}>
+        <Loader />
+      </LoaderContainer>
+    );
+  }
 
   return (
     <>
       <MainContainer>
-        {loading && (
+        {!hideLoader && (
           <LoaderContainer ref={loaderContainerRef}>
             <Loader />
           </LoaderContainer>

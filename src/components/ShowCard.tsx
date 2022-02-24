@@ -89,7 +89,6 @@ const ImageWrapper = styled.div<{ imageLoading: boolean }>`
     right: 0;
     height: 50%;
     background-image: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
-    transition: 300s;
   }
 
   ${({ imageLoading }) =>
